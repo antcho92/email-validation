@@ -25,11 +25,18 @@ def validate_email():
         return redirect('/')
     else:
         flash("The email address you entered ({}) is a VALID email address! Thank you!".format(request.form['email']))
-        
+        query = "INSERT INTO emails (emails, created_at, updated_at) VALUES (:email, Now(), Now())"
+        data = {
+            'email': request.form['email']
+        }
+        mysql.query_db(query, data)
         return redirect('/success')
 @app.route('/success')
 def show_emails():
-    render_template('emails')
+    query = "SELECT * FROM emails"
+    #data = {}
+    emails = mysql.query_db(query)
+    return render_template('emails.html', emails=emails)
 
 # # connect and store the connection in "mysql" note that you pass the database name to the function
 # mysql = MySQLConnector(app, 'email_validation')

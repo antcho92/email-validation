@@ -3,6 +3,12 @@
     <head>
         <meta charset="utf-8">
         <title>Emails List</title>
+        <style>
+            .success {
+                border: 1px solid green;
+                color: green
+            }
+        </style>
     </head>
     <body>
         {% with messages = get_flashed_messages() %}
@@ -14,5 +20,6 @@
         {% endfor %}
         {% endif %}
         {% endwith %}
+        <p>{{emails}}</p>
     </body>
 </html>
