@@ -20,6 +20,9 @@
         {% endfor %}
         {% endif %}
         {% endwith %}
-        <p>{{emails}}</p>
+        <h2>Email Addresses Entered:</h2>
+        {% for email in emails %}
+            <p>{{email.emails}} <span>{{email.created_at}}</span></p>
+        {% endfor %}
     </body>
 </html>

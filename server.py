@@ -33,8 +33,7 @@ def validate_email():
         return redirect('/success')
 @app.route('/success')
 def show_emails():
-    query = "SELECT * FROM emails"
-    #data = {}
+    query = "SELECT emails, date_format(created_at, '%m:%d:%y %l:%i %p') as created_at FROM emails"
     emails = mysql.query_db(query)
     return render_template('emails.html', emails=emails)
 
